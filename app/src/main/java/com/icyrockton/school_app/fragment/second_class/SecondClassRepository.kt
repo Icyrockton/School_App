@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
+import org.jsoup.parser.Parser
 
 class SecondClassRepository(private val networkAPI: NetworkAPI) {
 
@@ -113,8 +114,8 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
 
             val img_div = document.select(".leftImg").select("img")[0].attr("src")
             val endIndex = img_div.indexOf("_big")
-            val startIndex=3
-            val img_url="http://jwc.swjtu.edu.cn/${img_div.substring(startIndex,endIndex)}.jpg"
+            val startIndex = 3
+            val img_url = "http://jwc.swjtu.edu.cn/${img_div.substring(startIndex, endIndex)}.jpg"
 
             val date = basicInfo[0].text().trim()
             val capacity = basicInfo[1].text().trim().split('/')
@@ -132,8 +133,8 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
             val intro = tabUL.select(".simpIntroBox")
             val course_introduction = intro[0].select("p").text()
             var activity_arrangement = ""
-            if (intro.size>=2) {
-                val raw_arrangement= intro[1].select("p")
+            if (intro.size >= 2) {
+                val raw_arrangement = intro[1].select("p")
                 raw_arrangement.forEach {
                     activity_arrangement += "${it.text().trim()}\n"
                 }
@@ -168,5 +169,161 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
             )
         }
 
+    suspend fun getSecondClassInfoItem(courseID: String, delete_ID: String) =
+        withContext(Dispatchers.IO) {
+            val response = networkAPI.getSecondClassRecord(courseID)
+            val tds = Jsoup.parse(response.string()).select("td")
+            val img_url =
+                "http://jwc.swjtu.edu.cn/${tds[2].selectFirst("img").attr("src").substring(3)}"
+            var activity_arrangement = ""
+            tds[32].select("p").forEach {
+                if (it.text().isNotEmpty())
+                    activity_arrangement += it.text() + "\n"
+            }
+            var course_introduction = ""
+            tds[33].select("p").forEach {
+                if (it.text().isNotEmpty())
+                    course_introduction += it.text() + "\n"
+            }
+            var course_summary = ""
+            tds[34].select("p").forEach {
+                if (it.text().isNotEmpty())
+                    course_summary += it.text() + "\n"
+            }
+            return@withContext SecondClassSelectedInfo(
+                courseID,
+                delete_ID,
+                img_url,
+                tds[0].text(),
+                tds[1].text(),
+                tds[3].text(),
+                tds[4].text(),
+                tds[5].text(),
+                tds[6].text(),
+                tds[7].text(),
+                tds[8].text(),
+                tds[9].text(),
+                tds[10].text(),
+                tds[11].text(),
+                tds[12].text(),
+                tds[13].text(),
+                tds[14].text(),
+                tds[15].text(),
+                tds[16].text(),
+                tds[17].text(),
+                tds[18].text(),
+                tds[19].text(),
+                tds[20].text(),
+                tds[21].text(),
+                tds[22].text(),
+                tds[23].text(),
+                tds[24].text(),
+                tds[25].text(),
+                tds[26].text(),
+                tds[27].text(),
+                tds[28].text(),
+                tds[29].text(),
+                tds[30].text(),
+                tds[31].text(),
+                activity_arrangement,
+                course_introduction,
+                course_summary,
+                tds[35].text()
 
+            )
+        }
+
+    //获取已选择的所有课程
+    suspend fun getSelectedClassInfo(): List<SecondClassSelectedInfo> =
+        withContext(Dispatchers.IO) {
+            val response = networkAPI.getSelectedClassInfo()
+            val trs = Jsoup.parse(response.string()).getElementById("stb").select("tr")
+            val list = mutableListOf<SecondClassSelectedInfo>()
+            trs.forEach {
+                val tds = trs.select("td")
+                val ID = parseID(tds[1].select("span")[0].attr("onclick"))
+                val deleteID = parseID(tds[8].select("input").attr("onclick"))
+                list.add(getSecondClassInfoItem(ID, deleteID))
+            }
+            return@withContext list
+        }
+
+
+    //删除第二课堂课程
+    suspend fun deleteSecondClass(delete_ID: String) = withContext(Dispatchers.IO) {
+        return@withContext networkAPI.deleteSecondClass(delete_ID)
+    }
+
+    //获取学期信息
+    suspend fun getTermInfo(): List<SecondClassTermInfo> = withContext(Dispatchers.IO) {
+        val response = networkAPI.getTermInfo()
+        val document = Jsoup.parse(response.string(), "", Parser.xmlParser())
+        val names = document.select("term_name")
+        val ids = document.select("term_id")
+        val list = mutableListOf<SecondClassTermInfo>()
+        names.zip(ids).forEach {
+            list.add(SecondClassTermInfo(it.first.text().trim(), it.second.text().trim()))
+        }
+        return@withContext list
+    }
+
+
+    //获取第二课堂成绩
+    suspend fun getScore(term_name: String, term_id: String) = withContext(Dispatchers.IO) {
+        val response = networkAPI.getSecondClassScore(term_name, term_id)
+        val trs = Jsoup.parse(response.string()).select("stb").select("tr")
+        val list = mutableListOf<SecondClassScoreInfo>()
+        trs.forEach {
+            list.add(parseScore(it))
+        }
+
+        return@withContext list
+    }
+
+    private fun parseScore(row: Element): SecondClassScoreInfo {
+        val tds = row.select("td")
+        val spans = tds[1].select("span")
+        val course_name = spans[0].text().trim()
+        val semester = spans[2].text().trim()
+        val course_category = tds[3].text().trim()
+        val confirm_credit = tds[6].text().trim()
+        val score = tds[7].text().trim()
+        return SecondClassScoreInfo(course_name, semester, course_category, confirm_credit, score)
+    }
+
+
+    suspend fun getImageURL(courseID: String)= withContext(Dispatchers.IO){
+        val response = networkAPI.getSecondClassDetailInfo(courseID)
+        val document = Jsoup.parse(response.string())
+        val basicInfo = document.select(".classDetailGray")
+
+        val img_div = document.select(".leftImg").select("img")[0].attr("src")
+        val endIndex = img_div.indexOf("_big")
+        val startIndex = 3
+        return@withContext "http://jwc.swjtu.edu.cn/${img_div.substring(startIndex, endIndex)}.jpg"
+    }
+
+
+    //历史选课信息
+    suspend fun getHistoryInfo()= withContext(Dispatchers.IO){
+        val response= networkAPI.getHistorySecondClass()
+
+        val trs = Jsoup.parse(response.string()).getElementById("stb").select("tr")
+
+        val list= mutableListOf<SecondClassHistory>()
+        trs.forEach {
+            list.add(parseHistory(it))
+        }
+
+        return@withContext list
+    }
+
+    private suspend fun parseHistory(row: Element): SecondClassHistory = withContext(Dispatchers.IO) {
+        val tds = row.select("td")
+        val span = tds[1].select("span")[0]
+        val course_name=span.text().trim()
+        val img_url=getImageURL(parseID(span.attr("onclick")))
+        val credit=tds[2].select("span")[1].text().trim()
+        return@withContext SecondClassHistory(course_name, img_url, credit)
+    }
 }

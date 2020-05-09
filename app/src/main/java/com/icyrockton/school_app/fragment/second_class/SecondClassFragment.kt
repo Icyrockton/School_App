@@ -52,7 +52,6 @@ class SecondClassFragment : Fragment(), SecondClassHandler {
                 it.secondClassRecyclerView.layoutManager = LinearLayoutManager(requireContext())
                 adapter = SecondClassAdapter(this, requireContext(), mutableListOf())
                 it.secondClassRecyclerView.adapter = adapter
-                Log.d(TAG, "onViewCreated: SecondClassFragment 创建")
                 viewModel.secondClassInfoLivedata.observe(viewLifecycleOwner, Observer { data ->
                     adapter.updateData(data)
                 })

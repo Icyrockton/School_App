@@ -1,6 +1,7 @@
 package com.icyrockton.school_app.network
 
 import com.icyrockton.school_app.fragment.login.LoginResult
+import com.icyrockton.school_app.fragment.second_class.SecondClassDeleteResult
 import com.icyrockton.school_app.fragment.second_class.SecondClassPostResult
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -92,4 +93,40 @@ interface NetworkAPI {
         @Query("course_id") ID: String
         , @Query("setAction") action: String = "courseInfo"
     ): ResponseBody  //获取第二课堂详细信息
+
+
+    @GET("vatuu/YouthInfoAction?setAction=dealYouthCourseRecord&viewType=show&course_id=BC2F0C510BFCB524")
+    suspend fun getSecondClassRecord(
+        @Query("course_id") course_id: String,
+        @Query("setAction") action: String = "dealYouthCourseRecord",
+        @Query("viewType") viewType: String = "show"
+    ): ResponseBody
+
+    @GET("vatuu/YouthInfoAction?setAction=youthCourseStudentList")
+    suspend fun getSelectedClassInfo(
+    ): ResponseBody
+
+
+    @GET("vatuu/YouthInfoSetAction")
+    suspend fun deleteSecondClass(
+        @Query("list_id") list_id: String,
+        @Query("setAction") action: String = "deleteApply"
+    ): SecondClassDeleteResult
+
+
+    @GET("vatuu/AjaxXML?selectType=TermInfo&selectValue=termNormal")
+    suspend fun getTermInfo(): ResponseBody
+
+
+    @FormUrlEncoded
+    @POST("vatuu/YouthInfoAction?setAction=youthCourseStudentScore")
+    suspend fun getSecondClassScore( //获取第二课堂成绩
+        @Field("term_name") term_name: String,
+        @Field("term_id") term_ID: String
+    ): ResponseBody
+
+
+    @GET("vatuu/YouthInfoAction?setAction=youthCourseStudentListHistory")
+    suspend fun getHistorySecondClass(//历史选课
+    ): ResponseBody
 }

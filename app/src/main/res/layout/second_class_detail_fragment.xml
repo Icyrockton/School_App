@@ -492,6 +492,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="报名"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             app:backgroundTint="?colorAccent"
             android:id="@+id/second_class_btn_post"
             android:gravity="center"

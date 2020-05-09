@@ -68,7 +68,7 @@
                         android:id="@+id/second_class_btn_selected_course"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:clickable="true"
                         app:cardBackgroundColor="?colorAccent"
                         app:cardCornerRadius="24dp"
@@ -110,7 +110,7 @@
 
                         app:cardCornerRadius="24dp"
                         app:cardElevation="0dp"
-                        app:layout_constraintEnd_toStartOf="@+id/second_class_btn_evaluation"
+                        app:layout_constraintEnd_toStartOf="@+id/second_class_btn_history_select"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/second_class_btn_selected_course"
                         app:layout_constraintTop_toTopOf="@+id/second_class_btn_selected_course">
@@ -129,46 +129,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="成绩查询"
-                        android:textSize="12sp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="@+id/second_class_btn_score_query"
                         app:layout_constraintStart_toStartOf="@+id/second_class_btn_score_query"
                         app:layout_constraintTop_toTopOf="@+id/textView55" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/second_class_btn_evaluation"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:clickable="true"
-                        app:cardBackgroundColor="?colorAccent"
-
-                        app:cardCornerRadius="24dp"
-                        app:cardElevation="0dp"
-                        app:layout_constraintEnd_toStartOf="@+id/second_class_btn_history_select"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/second_class_btn_score_query"
-                        app:layout_constraintTop_toTopOf="@+id/second_class_btn_score_query">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:tint="@android:color/white"
-                            app:srcCompat="@drawable/ic_second_class_evaluation" />
-                    </com.google.android.material.card.MaterialCardView>
-
-
-                    <TextView
-                        android:id="@+id/textView57"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="课程评价"
-                        android:textSize="12sp"
-
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                        app:layout_constraintEnd_toEndOf="@+id/second_class_btn_evaluation"
-                        app:layout_constraintStart_toStartOf="@+id/second_class_btn_evaluation"
-                        app:layout_constraintTop_toTopOf="@+id/textView56" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/second_class_btn_history_select"
@@ -179,10 +145,11 @@
                         app:cardCornerRadius="24dp"
 
                         app:cardElevation="0dp"
+
                         app:layout_constraintEnd_toStartOf="@+id/second_class_btn_credit_distribution"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/second_class_btn_evaluation"
-                        app:layout_constraintTop_toTopOf="@+id/second_class_btn_evaluation">
+                        app:layout_constraintStart_toEndOf="@+id/second_class_btn_score_query"
+                        app:layout_constraintTop_toTopOf="@+id/second_class_btn_score_query">
 
                         <ImageView
                             android:layout_width="30dp"
@@ -197,13 +164,14 @@
                         android:id="@+id/textView60"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:text="历史选课"
-                        android:textSize="12sp"
 
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="@+id/second_class_btn_history_select"
                         app:layout_constraintStart_toStartOf="@+id/second_class_btn_history_select"
-                        app:layout_constraintTop_toTopOf="@+id/textView57" />
+                        app:layout_constraintTop_toBottomOf="@+id/second_class_btn_history_select" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/second_class_btn_credit_distribution"
@@ -231,9 +199,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="学时分布"
-                        android:textSize="12sp"
-
                         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="@+id/second_class_btn_credit_distribution"
                         app:layout_constraintStart_toStartOf="@+id/second_class_btn_credit_distribution"
                         app:layout_constraintTop_toTopOf="@+id/textView60" />
