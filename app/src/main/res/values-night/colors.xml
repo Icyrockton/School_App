@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 咸蛋黄 -->
+    <color name="yellow_egg_colorPrimary">#F57C00</color>
+    <color name="yellow_egg_colorPrimaryDark">#FF9800</color>
+    <color name="yellow_egg_colorAccent">#FF5722</color>
+    <color name="yellow_egg_iconOutterBackgroundColor">#41FBCB9A</color>
+
+    <!-- 海洋蓝 -->
+    <color name="ocean_blue_colorPrimary">#039be5
+    </color>
+    <color name="ocean_blue_colorPrimaryDark">#03a9f4</color>
+    <color name="ocean_blue_colorAccent">#0277bd
+    </color>
+    <color name="ocean_blue_iconOutterBackgroundColor">#b3e5fc</color>
+</resources>

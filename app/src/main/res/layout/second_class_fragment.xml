@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/score_collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:translationY="-50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/bg_linear_gradient_1" />
+
+                <com.scwang.wave.MultiWaveHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_gravity="bottom"
+                    android:scaleY="-1"
+                    app:mwhCloseColor="#B8C6DB"
+                    app:mwhColorAlpha="0.1"
+                    app:mwhStartColor="#F5F7FA"
+                    app:mwhVelocity="3" />
+
+            </FrameLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="220dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:elevation="2dp"
+                app:cardCornerRadius="@dimen/dp_10"
+                app:layout_collapseParallaxMultiplier="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/frameLayout">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/second_class_btn_selected_course"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?colorAccent"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toStartOf="@+id/second_class_btn_score_query"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_second_class__selected_course" />
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:id="@+id/textView55"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="已选课程"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/second_class_btn_selected_course"
+                        app:layout_constraintStart_toStartOf="@+id/second_class_btn_selected_course"
+                        app:layout_constraintTop_toBottomOf="@+id/second_class_btn_selected_course" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/second_class_btn_score_query"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?colorAccent"
+
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toStartOf="@+id/second_class_btn_evaluation"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/second_class_btn_selected_course"
+                        app:layout_constraintTop_toTopOf="@+id/second_class_btn_selected_course">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_second_class_score_query" />
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:id="@+id/textView56"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="成绩查询"
+                        android:textSize="12sp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:layout_constraintEnd_toEndOf="@+id/second_class_btn_score_query"
+                        app:layout_constraintStart_toStartOf="@+id/second_class_btn_score_query"
+                        app:layout_constraintTop_toTopOf="@+id/textView55" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/second_class_btn_evaluation"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?colorAccent"
+
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toStartOf="@+id/second_class_btn_history_select"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/second_class_btn_score_query"
+                        app:layout_constraintTop_toTopOf="@+id/second_class_btn_score_query">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_second_class_evaluation" />
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:id="@+id/textView57"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="课程评价"
+                        android:textSize="12sp"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:layout_constraintEnd_toEndOf="@+id/second_class_btn_evaluation"
+                        app:layout_constraintStart_toStartOf="@+id/second_class_btn_evaluation"
+                        app:layout_constraintTop_toTopOf="@+id/textView56" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/second_class_btn_history_select"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?colorAccent"
+                        app:cardCornerRadius="24dp"
+
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toStartOf="@+id/second_class_btn_credit_distribution"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/second_class_btn_evaluation"
+                        app:layout_constraintTop_toTopOf="@+id/second_class_btn_evaluation">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_second_class_history_select" />
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:id="@+id/textView60"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="历史选课"
+                        android:textSize="12sp"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:layout_constraintEnd_toEndOf="@+id/second_class_btn_history_select"
+                        app:layout_constraintStart_toStartOf="@+id/second_class_btn_history_select"
+                        app:layout_constraintTop_toTopOf="@+id/textView57" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/second_class_btn_credit_distribution"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="?colorAccent"
+                        app:cardCornerRadius="24dp"
+
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/second_class_btn_history_select"
+                        app:layout_constraintTop_toTopOf="@+id/second_class_btn_history_select">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_second_class_credit_distribution" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="学时分布"
+                        android:textSize="12sp"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        app:layout_constraintEnd_toEndOf="@+id/second_class_btn_credit_distribution"
+                        app:layout_constraintStart_toStartOf="@+id/second_class_btn_credit_distribution"
+                        app:layout_constraintTop_toTopOf="@+id/textView60" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+</com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/second_class_recycler_view"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    android:layout_width="match_parent" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/btn_order_submitDate_desc" android:title="@string/order_submitDate_desc"/>
+    <item android:id="@+id/btn_order_submitDate_asc" android:title="@string/order_submitDate_asc"/>
+    <item android:id="@+id/btn_order_courseCode" android:title="@string/order_courseCode"/>
+    <item android:id="@+id/btn_order_courseName" android:title="@string/order_courseName"/>
+    <item android:id="@+id/btn_order_termValue" android:title="@string/order_termValue"/>
+</menu>

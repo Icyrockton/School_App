@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="School_App.app" target="1.8" />
+      <module name="School_App.wave" target="1.7" />
+      <module name="School_App.williamchart" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

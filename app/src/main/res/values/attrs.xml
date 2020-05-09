@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--    icon外面的颜色-->
+    <attr name="iconOutterBackgroundColor" format="color" />
+</resources>

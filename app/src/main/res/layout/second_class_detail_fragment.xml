@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.icyrockton.school_app.fragment.second_class.SecondClassDetailInfo" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:id="@+id/second_class_detail_coordinatorLayout"
+        tools:context=".fragment.second_class.detail.SecondClassDetailFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            app:elevation="0dp"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            android:layout_height="350dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                app:statusBarScrim="@android:color/transparent"
+               app:layout_scrollFlags="snap"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/second_class_detail_img"
+                    android:translationY="-50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:scaleType="centerCrop" />
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:layout_width="match_parent"
+                    android:id="@+id/second_class_detail_toolbar"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:id="@+id/second_class_detail_nested_view"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/second_class_detail_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/second_class_detail_content"
+
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/textView65"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="课程时间"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView63"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.date}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@id/textView65"
+                        app:layout_constraintTop_toBottomOf="@id/textView65"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="23dp" />
+
+                    <TextView
+                        android:id="@+id/textView68"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="课程学时"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView65"
+                        app:layout_constraintTop_toTopOf="@+id/textView65" />
+
+                    <TextView
+                        android:id="@+id/textView64"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.credit}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView68"
+                        app:layout_constraintTop_toBottomOf="@+id/textView68" />
+
+                    <TextView
+                        android:id="@+id/textView70"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="已报人数"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="@+id/textView63"
+                        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+                    <TextView
+                        android:id="@+id/textView66"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.selected_capacity}"
+                        android:textColor="?colorAccent"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView70"
+                        app:layout_constraintTop_toBottomOf="@+id/textView70" />
+
+                    <TextView
+                        android:id="@+id/textView88"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" / "
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toEndOf="@+id/textView66"
+                        app:layout_constraintTop_toBottomOf="@+id/textView70" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.total_capacity}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toEndOf="@+id/textView88"
+                        app:layout_constraintTop_toTopOf="@+id/textView88" />
+
+                    <TextView
+                        android:id="@+id/textView71"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="课程类别"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView70"
+                        app:layout_constraintTop_toTopOf="@+id/textView70" />
+
+                    <TextView
+                        android:id="@+id/textView69"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.course_category}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView71"
+                        app:layout_constraintTop_toBottomOf="@+id/textView71" />
+
+                    <TextView
+                        android:id="@+id/textView73"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="课程地点"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="@+id/textView66"
+                        app:layout_constraintTop_toBottomOf="@+id/textView66" />
+
+                    <TextView
+                        android:id="@+id/textView67"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.location}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView73"
+                        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+
+                    <TextView
+                        android:id="@+id/textView75"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="选课校区"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="@+id/textView67"
+                        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+
+                    <TextView
+                        android:id="@+id/textView72"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.campus}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView75"
+                        app:layout_constraintTop_toBottomOf="@+id/textView75" />
+
+                    <TextView
+                        android:id="@+id/textView76"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+
+
+                        android:text="面向对象"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="@+id/textView72"
+                        app:layout_constraintTop_toBottomOf="@+id/textView72" />
+
+                    <TextView
+                        android:id="@+id/textView74"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        android:text="@{data.target}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textView76"
+                        app:layout_constraintTop_toBottomOf="@+id/textView76" />
+
+                    <TextView
+                        android:id="@+id/textView78"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="授课方式"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="@+id/textView74"
+                        app:layout_constraintTop_toBottomOf="@+id/textView74" />
+
+                    <TextView
+                        android:id="@+id/textView77"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.teaching_method}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView78"
+                        app:layout_constraintTop_toBottomOf="@+id/textView78" />
+
+                    <TextView
+                        android:id="@+id/textView81"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="报名时间"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="@+id/textView77"
+                        app:layout_constraintTop_toBottomOf="@+id/textView77" />
+
+                    <TextView
+                        android:id="@+id/textView79"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.registration_time}"
+
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView81"
+                        app:layout_constraintTop_toBottomOf="@+id/textView81" />
+
+                    <TextView
+                        android:id="@+id/textView82"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="学时说明"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:layout_constraintStart_toStartOf="@+id/textView79"
+                        app:layout_constraintTop_toBottomOf="@+id/textView79" />
+
+                    <TextView
+                        android:id="@+id/textView80"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.credit_explain}"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                        app:layout_constraintStart_toStartOf="@+id/textView82"
+                        app:layout_constraintTop_toBottomOf="@+id/textView82" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:cardElevation="@dimen/dp_5"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textView80">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+
+                                android:id="@+id/imageView13"
+                                android:layout_width="30dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginBottom="2dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView83"
+                                app:layout_constraintStart_toStartOf="@+id/textView83"
+                                app:srcCompat="@drawable/second_class_tv_bg" />
+
+                            <TextView
+                                android:id="@+id/textView83"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="16dp"
+                                android:text="课程介绍"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/second_class_course_introduction"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="@{data.course_introduction}"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/textView83"
+                                app:layout_constraintTop_toBottomOf="@+id/textView83" />
+
+
+                            <ImageView
+
+                                android:id="@+id/imageView14"
+                                android:layout_width="30dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginBottom="2dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView84"
+                                app:layout_constraintStart_toStartOf="@+id/textView84"
+                                app:srcCompat="@drawable/second_class_tv_bg" />
+
+                            <TextView
+                                android:id="@+id/textView84"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="活动安排"
+                                app:layout_constraintStart_toStartOf="@+id/second_class_course_introduction"
+                                app:layout_constraintTop_toBottomOf="@+id/second_class_course_introduction" />
+
+                            <TextView
+                                android:id="@+id/second_class_activity_arrange"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+
+                                android:layout_marginEnd="8dp"
+                                android:text="@{data.activity_arrangement}"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/textView84"
+                                app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
+
+                            <ImageView
+
+                                android:layout_width="30dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginBottom="2dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView85"
+                                app:layout_constraintStart_toStartOf="@+id/textView85"
+                                app:srcCompat="@drawable/second_class_tv_bg" />
+
+                            <TextView
+                                android:id="@+id/textView85"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_marginTop="16dp"
+                                android:text="课程负责人"
+                                app:layout_constraintStart_toStartOf="@+id/second_class_activity_arrange"
+                                app:layout_constraintTop_toBottomOf="@+id/second_class_activity_arrange" />
+
+                            <TextView
+                                android:id="@+id/second_class_person_in_charge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+
+                                android:layout_marginEnd="8dp"
+                                android:text="@{data.person_in_charge}"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/textView85"
+                                app:layout_constraintTop_toBottomOf="@+id/textView85" />
+
+
+                            <ImageView
+
+                                android:layout_width="30dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginBottom="2dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView86"
+                                app:layout_constraintStart_toStartOf="@+id/textView86"
+                                app:srcCompat="@drawable/second_class_tv_bg" />
+
+                            <TextView
+                                android:id="@+id/textView86"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_marginTop="16dp"
+                                android:text="主持人"
+                                app:layout_constraintStart_toStartOf="@+id/second_class_person_in_charge"
+                                app:layout_constraintTop_toBottomOf="@+id/second_class_person_in_charge" />
+
+                            <TextView
+                                android:id="@+id/second_class_speaker"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="@{data.speaker}"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/textView86"
+                                app:layout_constraintTop_toBottomOf="@+id/textView86" />
+
+                            <ImageView
+
+                                android:layout_width="30dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginBottom="2dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView87"
+                                app:layout_constraintStart_toStartOf="@+id/textView87"
+                                app:srcCompat="@drawable/second_class_tv_bg" />
+
+                            <TextView
+                                android:id="@+id/textView87"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:layout_marginTop="16dp"
+                                android:text="FAQ"
+                                app:layout_constraintStart_toStartOf="@+id/second_class_speaker"
+                                app:layout_constraintTop_toBottomOf="@+id/second_class_speaker" />
+
+                            <TextView
+                                android:id="@+id/second_class_faq"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="16dp"
+                                android:text="@{data.FQA}"
+                                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/textView87"
+                                app:layout_constraintTop_toBottomOf="@+id/textView87" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="报名"
+            app:backgroundTint="?colorAccent"
+            android:id="@+id/second_class_btn_post"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/dp_25"
+            android:layout_marginEnd="@dimen/dp_25"
+            app:layout_anchorGravity="bottom|end"
+            app:layout_anchor="@id/second_class_detail_nested_view" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

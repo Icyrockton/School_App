@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:id="@+id/theme_layout"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.cardview.widget.CardView
+        android:elevation="@dimen/dp_10"
+        android:id="@+id/theme_content_layout"
+        android:layout_height="150dp"
+        android:layout_marginTop="36dp"
+        android:layout_width="300dp"
+        app:cardCornerRadius="@dimen/dp_15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/theme_top_card_view"
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@color/yellow_egg_colorPrimary"
+            app:cardElevation="4dp" />
+
+        <ImageView
+            android:id="@+id/theme_gradient"
+            android:layout_gravity="center"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:layout_marginRight="@dimen/dp_25"
+            android:layout_width="match_parent"
+            app:srcCompat="@drawable/bg_linear_gradient_1" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/theme_apply"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_baseline_check_24"
+        android:layout_width="wrap_content"
+        android:translationY="@dimen/dp_25"
+        app:layout_constraintBottom_toBottomOf="@+id/theme_content_layout"
+        app:layout_constraintEnd_toEndOf="@+id/theme_content_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/theme_recycler_view"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/theme_content_layout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

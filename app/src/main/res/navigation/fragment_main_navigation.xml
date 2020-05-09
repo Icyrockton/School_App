@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_main_navigation"
+    app:startDestination="@id/mainPageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.icyrockton.school_app.fragment.main.homepage.HomePageFragment"
+        android:label="home_page_fragment"
+        tools:layout="@layout/home_page_fragment" />
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.icyrockton.school_app.fragment.main.mainpage.MainPageFragment"
+        android:label="main_page_fragment"
+        tools:layout="@layout/main_page_fragment" />
+    <dialog
+        android:id="@+id/themeDialogFragment"
+        android:name="com.icyrockton.school_app.dialogfragment.theme.ThemeDialogFragment"
+        android:label="ThemeDialogFragment" />
+</navigation>

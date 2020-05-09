@@ -1,0 +1,56 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/yellow_egg_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/yellow_egg_colorPrimaryDark</item>
+        <item name="colorAccent">@color/yellow_egg_colorAccent</item>
+        <item name="iconOutterBackgroundColor">@color/yellow_egg_iconOutterBackgroundColor</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.YourApp.LargeComponent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+    </style>
+
+    <style name="ShapeAppearance.YourApp.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+
+    <style name="SecondClassCustomHeaderCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/SecondClassCustomHeaderCardViewShape</item>
+    </style>
+
+
+    <style name="SecondClassCustomHeaderCardViewShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">80dp</item>
+        <item name="cornerSizeBottomRight">80dp</item>
+
+    </style>
+
+
+
+
+
+    <!-- 主题 -->
+    <style name="yellow_egg_AppTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/yellow_egg_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/yellow_egg_colorPrimaryDark</item>
+        <item name="colorAccent">@color/yellow_egg_colorAccent</item>
+        <item name="iconOutterBackgroundColor">@color/yellow_egg_iconOutterBackgroundColor</item>
+    </style>
+
+    <style name="ocean_blue_AppTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/ocean_blue_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/ocean_blue_colorPrimaryDark</item>
+        <item name="colorAccent">@color/ocean_blue_colorAccent</item>
+        <item name="iconOutterBackgroundColor">@color/ocean_blue_iconOutterBackgroundColor</item>
+    </style>
+
+</resources>

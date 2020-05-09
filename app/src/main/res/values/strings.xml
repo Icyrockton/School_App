@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">School_App</string>
+    <string name="welcome_back">欢迎回来</string>
+    <string name="hint_username">学号/工号</string>
+    <string name="hint_password">输入登录密码</string>
+    <string name="login">登录</string>
+    <string name="hint_verification_code">输入验证码/点击图片刷新</string>
+    <string name="hint_remember_account">记住 学号/登录密码</string>
+    <string name="hint_userID_notfount">学号/工号不存在</string>
+    <string name="hint_userPassword_error">密码不正确</string>
+    <string name="hint_verifyCode_error">验证码输入不正确</string>
+    <string name="sh_userID">userID</string>
+    <string name="sh_userPassword">userPassword</string>
+    <string name="sh_isRemember">isRemember</string>
+    <string name="sh_name">info</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_score">成绩与排名</string>
+    <string name="str_order_type">排序规则</string>
+
+    <!-- 课程排序规则  -->
+    <string name="order_submitDate_asc">提交时间升序</string>
+    <string name="order_submitDate_desc">提交时间降序</string>
+    <string name="order_termValue">课程选修时间</string>
+    <string name="order_courseName">课程名称</string>
+    <string name="order_courseCode">课程代码</string>
+    <string name="str_main_function">功能</string>
+    <string name="str_other_function">其他功能</string>
+    <string name="str_dark_mode">夜间模式</string>
+    <string name="str_setting">设置</string>
+    <string name="sh_dark_mode">dark_mode</string>
+    <string name="sh_dark_mode_follow_system">dark_mode_follow_system</string>
+    <string name="sh_current_theme_index">current_theme_index</string>
+    <string name="str_second_class">第二课堂</string>
+    <string name="hint_i_know">我知道了</string>
+    <string name="hint_cancel">取消</string>
+
+
+</resources>

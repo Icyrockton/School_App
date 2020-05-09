@@ -1,0 +1,4 @@
+include ':wave'
+include ':williamchart'
+rootProject.name='School_App'
+include ':app'

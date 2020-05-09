@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.icyrockton.school_app.fragment.LoginFragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.icyrockton.school_app.fragment.main.MainFragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_secondClassFragment"
+            app:destination="@id/secondClassFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.icyrockton.school_app.fragment.score.ScoreFragment"
+        tools:layout="@layout/score_fragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.icyrockton.school_app.fragment.profile.ProfileFragment"
+        tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/secondClassFragment"
+        android:name="com.icyrockton.school_app.fragment.second_class.SecondClassFragment"
+        android:label="second_class_fragment"
+        tools:layout="@layout/second_class_fragment">
+        <action android:id="@+id/action_secondClassFragment_to_secondClassDetailFragment"
+            app:destination="@id/secondClassDetailFragment">
+            <argument android:name="ID" app:argType="string" app:nullable="false" android:defaultValue="0"/>
+            <argument android:name="course_name" app:argType="string" app:nullable="true" />
+            <argument android:name="credit" app:argType="string" app:nullable="true" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/secondClassDetailFragment"
+        android:name="com.icyrockton.school_app.fragment.second_class.detail.SecondClassDetailFragment"
+        tools:layout="@layout/second_class_detail_fragment" />
+
+
+</navigation>
