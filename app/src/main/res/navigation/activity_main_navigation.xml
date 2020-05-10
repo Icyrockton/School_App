@@ -46,11 +46,18 @@
             <argument android:name="course_name" app:argType="string" app:nullable="true" />
             <argument android:name="credit" app:argType="string" app:nullable="true" />
         </action>
+        <action android:id="@+id/action_secondClassFragment_to_secondClassSelectedFragment"
+            app:destination="@id/secondClassSelectedFragment">
+        </action>
     </fragment>
     <fragment
         android:id="@+id/secondClassDetailFragment"
         android:name="com.icyrockton.school_app.fragment.second_class.detail.SecondClassDetailFragment"
         tools:layout="@layout/second_class_detail_fragment" />
+    <fragment
+        android:id="@+id/secondClassSelectedFragment"
+        android:name="com.icyrockton.school_app.fragment.second_class.selected.SecondClassSelectedFragment"
+        tools:layout="@layout/second_class_selected_fragment" />
 
 
 </navigation>

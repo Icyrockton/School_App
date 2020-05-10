@@ -1,6 +1,7 @@
 package com.icyrockton.school_app.fragment.second_class
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,8 +38,11 @@ class SecondClassAdapter(private val handler: SecondClassHandler,private val con
                 context,LinearLayoutManager.HORIZONTAL,false
             )
             binding.secondClassInnerTitle.text=secondClassWrapper.title
-
-            binding.secondClassInnerRecyclerView.adapter=SecondClassInnerAdapter(handler,context,secondClassWrapper.data)
+            Log.d("--------->", "bindData: ")
+            val adapter =
+                SecondClassInnerAdapter(handler, context, secondClassWrapper.data)
+            adapter.stateRestorationPolicy=StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            binding.secondClassInnerRecyclerView.adapter=adapter
         }
     }
 }

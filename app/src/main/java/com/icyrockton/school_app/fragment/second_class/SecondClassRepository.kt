@@ -1,6 +1,5 @@
 package com.icyrockton.school_app.fragment.second_class
 
-import android.util.Log
 import com.icyrockton.school_app.network.NetworkAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -239,6 +238,8 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
             val response = networkAPI.getSelectedClassInfo()
             val trs = Jsoup.parse(response.string()).getElementById("stb").select("tr")
             val list = mutableListOf<SecondClassSelectedInfo>()
+            if (trs[0].childrenSize()==1) //暂无数据
+            return@withContext  list
             trs.forEach {
                 val tds = trs.select("td")
                 val ID = parseID(tds[1].select("span")[0].attr("onclick"))
@@ -292,7 +293,7 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
     }
 
 
-    suspend fun getImageURL(courseID: String)= withContext(Dispatchers.IO){
+    suspend fun getImageURL(courseID: String) = withContext(Dispatchers.IO) {
         val response = networkAPI.getSecondClassDetailInfo(courseID)
         val document = Jsoup.parse(response.string())
         val basicInfo = document.select(".classDetailGray")
@@ -305,12 +306,12 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
 
 
     //历史选课信息
-    suspend fun getHistoryInfo()= withContext(Dispatchers.IO){
-        val response= networkAPI.getHistorySecondClass()
+    suspend fun getHistoryInfo() = withContext(Dispatchers.IO) {
+        val response = networkAPI.getHistorySecondClass()
 
         val trs = Jsoup.parse(response.string()).getElementById("stb").select("tr")
 
-        val list= mutableListOf<SecondClassHistory>()
+        val list = mutableListOf<SecondClassHistory>()
         trs.forEach {
             list.add(parseHistory(it))
         }
@@ -318,12 +319,55 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
         return@withContext list
     }
 
-    private suspend fun parseHistory(row: Element): SecondClassHistory = withContext(Dispatchers.IO) {
-        val tds = row.select("td")
-        val span = tds[1].select("span")[0]
-        val course_name=span.text().trim()
-        val img_url=getImageURL(parseID(span.attr("onclick")))
-        val credit=tds[2].select("span")[1].text().trim()
-        return@withContext SecondClassHistory(course_name, img_url, credit)
+    private suspend fun parseHistory(row: Element): SecondClassHistory =
+        withContext(Dispatchers.IO) {
+            val tds = row.select("td")
+            val span = tds[1].select("span")[0]
+            val course_name = span.text().trim()
+            val img_url = getImageURL(parseID(span.attr("onclick")))
+            val credit = tds[2].select("span")[1].text().trim()
+            return@withContext SecondClassHistory(course_name, img_url, credit)
+        }
+
+
+    //获取学时分布
+    suspend fun getDistribution() = withContext(Dispatchers.IO) {
+        val response = networkAPI.getDistribution()
+        val document = Jsoup.parse(response.string())
+        val trs = document.select("table").select("tr")
+        val map = HashMap<String, MutableList<SecondClassDistribution>>()
+        var key = ""
+        for (i in 1 until trs.size - 1) {
+            val row = trs[i]
+            val tds = row.select("td")
+            if (tds.size == 5) {
+                key = tds[0].text().trim()
+                map.put(key, mutableListOf())
+                map.get(key)?.let {
+                    it.add(
+                        SecondClassDistribution(
+                            tds[1].text().trim(),
+                            tds[2].text().trim(),
+                            tds[3].text().trim()
+                        )
+                    )
+                }
+            } else {
+                map.get(key)?.let {
+                    it.add(
+                        SecondClassDistribution(
+                            tds[0].text().trim(),
+                            tds[1].text().trim(),
+                            tds[2].text().trim()
+                        )
+                    )
+                }
+            }
+        }
+        val total_credit = trs[trs.size - 1].select("td")[1].text().trim()
+        return@withContext SecondClassDistributionWrapper(
+            map,
+            total_credit
+        )
     }
 }

@@ -35,6 +35,7 @@
     <string name="str_second_class">第二课堂</string>
     <string name="hint_i_know">我知道了</string>
     <string name="hint_cancel">取消</string>
+    <string name="str_cancel_second_class">取消该课程</string>
 
 
 </resources>

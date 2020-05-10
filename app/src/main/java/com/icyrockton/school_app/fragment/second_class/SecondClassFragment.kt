@@ -12,11 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.icyrockton.school_app.R
 import com.icyrockton.school_app.databinding.SecondClassFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class SecondClassFragment : Fragment(), SecondClassHandler {
+class SecondClassFragment : Fragment(), SecondClassHandler,View.OnClickListener {
 
     companion object {
         fun newInstance() = SecondClassFragment()
@@ -48,14 +49,25 @@ class SecondClassFragment : Fragment(), SecondClassHandler {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(!isNavigationViewInit) {
+            initListener()
             binding?.let {
                 it.secondClassRecyclerView.layoutManager = LinearLayoutManager(requireContext())
                 adapter = SecondClassAdapter(this, requireContext(), mutableListOf())
+                adapter.stateRestorationPolicy=RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
                 it.secondClassRecyclerView.adapter = adapter
                 viewModel.secondClassInfoLivedata.observe(viewLifecycleOwner, Observer { data ->
                     adapter.updateData(data)
                 })
             }
+        }
+    }
+
+    private fun initListener() {
+        binding?.let {
+            it.secondClassBtnSelectedCourse.setOnClickListener(this)
+            it.secondClassBtnCreditDistribution.setOnClickListener(this)
+            it.secondClassBtnHistorySelect.setOnClickListener(this)
+            it.secondClassBtnScoreQuery.setOnClickListener(this)
         }
     }
 
@@ -65,5 +77,15 @@ class SecondClassFragment : Fragment(), SecondClassHandler {
                 "ID" to ID, "course_name" to course_name,"credit" to credit
             )
         )
+    }
+
+    override fun onClick(v: View?) {
+        v?.let {
+            when(it.id){
+                R.id.second_class_btn_selected_course->{
+                    findNavController().navigate(R.id.action_secondClassFragment_to_secondClassSelectedFragment)
+                }
+            }
+        }
     }
 }

@@ -95,7 +95,7 @@ interface NetworkAPI {
     ): ResponseBody  //获取第二课堂详细信息
 
 
-    @GET("vatuu/YouthInfoAction?setAction=dealYouthCourseRecord&viewType=show&course_id=BC2F0C510BFCB524")
+    @GET("vatuu/YouthInfoAction")
     suspend fun getSecondClassRecord(
         @Query("course_id") course_id: String,
         @Query("setAction") action: String = "dealYouthCourseRecord",
@@ -129,4 +129,7 @@ interface NetworkAPI {
     @GET("vatuu/YouthInfoAction?setAction=youthCourseStudentListHistory")
     suspend fun getHistorySecondClass(//历史选课
     ): ResponseBody
+
+    @GET("vatuu/YouthStudentStatsAction?setAction=studentData")
+    suspend fun getDistribution():ResponseBody
 }

@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class SecondClassDeleteResult(
     @Json(name = "success")
-    val error: String="",
+    val success: String="",
     @Json(name = "flag")
     val flag: Boolean=false
 )
