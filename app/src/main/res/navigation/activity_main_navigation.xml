@@ -38,16 +38,19 @@
     <fragment
         android:id="@+id/secondClassFragment"
         android:name="com.icyrockton.school_app.fragment.second_class.SecondClassFragment"
-        android:label="second_class_fragment"
         tools:layout="@layout/second_class_fragment">
         <action android:id="@+id/action_secondClassFragment_to_secondClassDetailFragment"
             app:destination="@id/secondClassDetailFragment">
             <argument android:name="ID" app:argType="string" app:nullable="false" android:defaultValue="0"/>
             <argument android:name="course_name" app:argType="string" app:nullable="true" />
             <argument android:name="credit" app:argType="string" app:nullable="true" />
+            <argument android:name="isEnable" app:argType="boolean" android:defaultValue="false"/>
         </action>
         <action android:id="@+id/action_secondClassFragment_to_secondClassSelectedFragment"
             app:destination="@id/secondClassSelectedFragment">
+        </action>
+        <action android:id="@+id/action_secondClassFragment_to_secondClassHistoryFragment"
+            app:destination="@id/secondClassHistoryFragment">
         </action>
     </fragment>
     <fragment
@@ -58,6 +61,19 @@
         android:id="@+id/secondClassSelectedFragment"
         android:name="com.icyrockton.school_app.fragment.second_class.selected.SecondClassSelectedFragment"
         tools:layout="@layout/second_class_selected_fragment" />
+    <fragment
+        android:id="@+id/secondClassHistoryFragment"
+        android:name="com.icyrockton.school_app.fragment.second_class.history.SecondClassHistoryFragment"
+        tools:layout="@layout/second_class_history_fragment">
+        <action android:id="@+id/action_secondClassHistoryFragment_to_secondClassDetailFragment"
+            app:destination="@id/secondClassDetailFragment">
+            <argument android:name="ID" app:argType="string" app:nullable="false" android:defaultValue="0"/>
+            <argument android:name="course_name" app:argType="string" app:nullable="true" />
+            <argument android:name="credit" app:argType="string" app:nullable="true" />
+            <argument android:name="isEnable" app:argType="boolean" android:defaultValue="false"/>
+
+        </action>
+    </fragment>
 
 
 </navigation>

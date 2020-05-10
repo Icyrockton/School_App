@@ -71,10 +71,10 @@ class SecondClassFragment : Fragment(), SecondClassHandler,View.OnClickListener 
         }
     }
 
-    override fun goToDetail(ID: String, course_name: String, credit: String) {
+    override fun goToDetail(ID: String, course_name: String, credit: String,isEnable:Boolean) {
         findNavController().navigate(
             R.id.action_secondClassFragment_to_secondClassDetailFragment, bundleOf(
-                "ID" to ID, "course_name" to course_name,"credit" to credit
+                "ID" to ID, "course_name" to course_name,"credit" to credit,"isEnable" to isEnable
             )
         )
     }
@@ -84,6 +84,9 @@ class SecondClassFragment : Fragment(), SecondClassHandler,View.OnClickListener 
             when(it.id){
                 R.id.second_class_btn_selected_course->{
                     findNavController().navigate(R.id.action_secondClassFragment_to_secondClassSelectedFragment)
+                }
+                R.id.second_class_btn_history_select->{
+                    findNavController().navigate(R.id.action_secondClassFragment_to_secondClassHistoryFragment)
                 }
             }
         }

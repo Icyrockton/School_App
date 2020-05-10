@@ -32,6 +32,7 @@ class SecondClassDetailFragment : Fragment() {
     private var ID: String = ""
     private var course_name = ""
     private var credit = ""
+    private var isEnable = false
     private val viewModel: SecondClassDetailViewModel by viewModel()
     private lateinit var binding: SecondClassDetailFragmentBinding
     override fun onCreateView(
@@ -47,9 +48,16 @@ class SecondClassDetailFragment : Fragment() {
         ID = arguments?.getString("ID")!!
         course_name = arguments?.getString("course_name")!!
         credit = arguments?.getString("credit")!!
-
+        isEnable = arguments?.getBoolean("isEnable")!!
         viewModel.getData(ID, credit)
         NavigationUI.setupWithNavController(binding.secondClassDetailToolbar, findNavController())
+        if (isEnable) {
+            binding.secondClassBtnPost.setOnClickListener {
+                post()
+            }
+        } else {
+            binding.secondClassBtnPost.visibility = View.GONE
+        }
         initLiveData()
 
     }
@@ -62,8 +70,9 @@ class SecondClassDetailFragment : Fragment() {
                         binding.secondClassDetailCoordinatorLayout,
                         "报名成功!",
                         Snackbar.LENGTH_SHORT
-                    ).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).setAction(getText(R.string.hint_i_know)) {
-                    }
+                    ).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
+                        .setAction(getText(R.string.hint_i_know)) {
+                        }
                         .show()
 
                 } else {
@@ -71,12 +80,13 @@ class SecondClassDetailFragment : Fragment() {
                         binding.secondClassDetailCoordinatorLayout,
                         it.error,
                         Snackbar.LENGTH_SHORT
-                    ).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).setAction(getText(R.string.hint_cancel)) {
-                    }
+                    ).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
+                        .setAction(getText(R.string.hint_cancel)) {
+                        }
                         .show()
 
                 }
-                binding.secondClassBtnPost.isEnabled=true
+                binding.secondClassBtnPost.isEnabled = true
 
             }
         })
@@ -94,9 +104,7 @@ class SecondClassDetailFragment : Fragment() {
                         transformations(RoundedCornersTransformation(0f, 0f, 20f, 20f))
                     }
                     binding.secondClassDetailContent.visibility = View.VISIBLE
-                    binding.secondClassBtnPost.setOnClickListener {
-                        post()
-                    }
+
 
                 }
             }
@@ -104,7 +112,7 @@ class SecondClassDetailFragment : Fragment() {
     }
 
     private fun post() {
-        binding.secondClassBtnPost.isEnabled=false
+        binding.secondClassBtnPost.isEnabled = false
         viewModel.post(ID)
     }
 

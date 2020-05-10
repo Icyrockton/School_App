@@ -305,6 +305,19 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
     }
 
 
+    //返回有压缩的图片
+    suspend fun getBigImageURL(courseID: String) = withContext(Dispatchers.IO) {
+        val response = networkAPI.getSecondClassDetailInfo(courseID)
+        val document = Jsoup.parse(response.string())
+        val basicInfo = document.select(".classDetailGray")
+
+        val img_div = document.select(".leftImg").select("img")[0].attr("src")
+        val endIndex = img_div.indexOf("_big")
+        val startIndex = 3
+        return@withContext "http://jwc.swjtu.edu.cn/${img_div.substring(startIndex, endIndex)}_big.jpg"
+    }
+
+
     //历史选课信息
     suspend fun getHistoryInfo() = withContext(Dispatchers.IO) {
         val response = networkAPI.getHistorySecondClass()
@@ -324,9 +337,10 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
             val tds = row.select("td")
             val span = tds[1].select("span")[0]
             val course_name = span.text().trim()
-            val img_url = getImageURL(parseID(span.attr("onclick")))
+            val ID = parseID(span.attr("onclick"))
+            val img_url = getBigImageURL(ID)
             val credit = tds[2].select("span")[1].text().trim()
-            return@withContext SecondClassHistory(course_name, img_url, credit)
+            return@withContext SecondClassHistory(ID,course_name, img_url, credit)
         }
 
 

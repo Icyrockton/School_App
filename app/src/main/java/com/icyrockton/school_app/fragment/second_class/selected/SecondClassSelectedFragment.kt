@@ -50,10 +50,17 @@ class SecondClassSelectedFragment : Fragment(), SecondClassDeleteHandler {
                 when (data.networkType) {
                     NetworkType.LOADING -> {
                         binding.secondClassSelectedSwipeRefresh.isRefreshing = true
+                        binding.secondClassSelectedNoContent.visibility=View.GONE
                     }
                     NetworkType.DONE -> {
                         binding.secondClassSelectedSwipeRefresh.isRefreshing = false
+                        if (data.data!!.isEmpty()){
+                            binding.secondClassSelectedNoContent.visibility=View.VISIBLE
+                        }else{
+                            binding.secondClassSelectedNoContent.visibility=View.GONE
+                        }
                         adapter.updateData(data.data!!)
+
                         if (!delete) {
                             snackBar("刷新成功")
                         }

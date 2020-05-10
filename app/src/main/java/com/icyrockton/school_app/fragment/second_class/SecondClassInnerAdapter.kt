@@ -48,7 +48,8 @@ class SecondClassInnerAdapter(
                     handler.goToDetail(
                         classInfo.ID,
                         classInfo.course_name,
-                        classInfo.credit
+                        classInfo.credit,
+                        true
                     )
                 }
             }
