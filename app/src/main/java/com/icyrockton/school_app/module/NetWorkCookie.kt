@@ -11,7 +11,6 @@ class NetWorkCookie:CookieJar {//保存Cookie
 }
     private var cookiesSave = mutableListOf<Cookie>() //保存的cookie
     override fun loadForRequest(url: HttpUrl): List<Cookie> {
-        Log.d(TAG, "loadForRequest: ${cookiesSave}")
         return cookiesSave
     }
 

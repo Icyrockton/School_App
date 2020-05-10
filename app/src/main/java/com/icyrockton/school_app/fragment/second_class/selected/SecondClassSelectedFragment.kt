@@ -62,7 +62,7 @@ class SecondClassSelectedFragment : Fragment(), SecondClassDeleteHandler {
                         adapter.updateData(data.data!!)
 
                         if (!delete) {
-                            snackBar("刷新成功")
+                            snackBar("刷新成功~")
                         }
                     }
                 }

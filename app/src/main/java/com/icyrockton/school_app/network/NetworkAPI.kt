@@ -119,6 +119,9 @@ interface NetworkAPI {
 
 
     @FormUrlEncoded
+    @Headers(
+        "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"  //不加此header 没有权限
+    )
     @POST("vatuu/YouthInfoAction?setAction=youthCourseStudentScore")
     suspend fun getSecondClassScore( //获取第二课堂成绩
         @Field("term_name") term_name: String,
@@ -131,5 +134,5 @@ interface NetworkAPI {
     ): ResponseBody
 
     @GET("vatuu/YouthStudentStatsAction?setAction=studentData")
-    suspend fun getDistribution():ResponseBody
+    suspend fun getDistribution(): ResponseBody
 }

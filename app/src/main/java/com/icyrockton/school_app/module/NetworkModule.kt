@@ -1,6 +1,7 @@
 package com.icyrockton.school_app.module
 
 import coil.ImageLoaderBuilder
+import com.icyrockton.school_app.R
 import com.icyrockton.school_app.fragment.second_class.SecondClassPostResultJsonAdapter
 import com.icyrockton.school_app.network.NetworkAPI
 import com.squareup.moshi.Moshi
@@ -18,13 +19,18 @@ val NetworkModule = module {
     single { NetWorkCookie() }
 
     single {
+
         ImageLoaderBuilder(androidContext()).crossfade(true).okHttpClient(get<OkHttpClient>())
             .build()
+
     }
 
     single { Moshi.Builder().build() }
 
-    single { Retrofit.Builder().baseUrl("http://jwc.swjtu.edu.cn").client(get()).addConverterFactory(MoshiConverterFactory.create(get())).build() }
+    single {
+        Retrofit.Builder().baseUrl("http://jwc.swjtu.edu.cn").client(get())
+            .addConverterFactory(MoshiConverterFactory.create(get())).build()
+    }
 
     single { get<Retrofit>().create(NetworkAPI::class.java) }
 

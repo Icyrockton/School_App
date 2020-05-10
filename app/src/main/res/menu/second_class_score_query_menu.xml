@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/second_class_score_select_term"
+        app:showAsAction="always"
+        android:title="学期选择"
+        android:icon="@drawable/ic_second_class_term"/>
+</menu>

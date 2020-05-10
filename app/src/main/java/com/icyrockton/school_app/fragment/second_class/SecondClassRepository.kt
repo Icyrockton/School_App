@@ -1,5 +1,6 @@
 package com.icyrockton.school_app.fragment.second_class
 
+import android.util.Log
 import com.icyrockton.school_app.network.NetworkAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -272,8 +273,10 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
     //获取第二课堂成绩
     suspend fun getScore(term_name: String, term_id: String) = withContext(Dispatchers.IO) {
         val response = networkAPI.getSecondClassScore(term_name, term_id)
-        val trs = Jsoup.parse(response.string()).select("stb").select("tr")
+        val trs = Jsoup.parse(response.string()).getElementById("stb").select("tr")
         val list = mutableListOf<SecondClassScoreInfo>()
+        if (trs[0].childrenSize()==1)
+            return@withContext list
         trs.forEach {
             list.add(parseScore(it))
         }
@@ -285,11 +288,11 @@ class SecondClassRepository(private val networkAPI: NetworkAPI) {
         val tds = row.select("td")
         val spans = tds[1].select("span")
         val course_name = spans[0].text().trim()
-        val semester = spans[2].text().trim()
+        val semester_ID = spans[2].attr("v").trim()
         val course_category = tds[3].text().trim()
         val confirm_credit = tds[6].text().trim()
         val score = tds[7].text().trim()
-        return SecondClassScoreInfo(course_name, semester, course_category, confirm_credit, score)
+        return SecondClassScoreInfo(course_name, semester_ID, course_category, confirm_credit, score)
     }
 
 

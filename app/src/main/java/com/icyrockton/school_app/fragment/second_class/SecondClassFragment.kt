@@ -88,6 +88,9 @@ class SecondClassFragment : Fragment(), SecondClassHandler,View.OnClickListener 
                 R.id.second_class_btn_history_select->{
                     findNavController().navigate(R.id.action_secondClassFragment_to_secondClassHistoryFragment)
                 }
+                R.id.second_class_btn_score_query->{
+                    findNavController().navigate(R.id.action_secondClassFragment_to_secondClassScoreQueryFragment)
+                }
             }
         }
     }

@@ -52,6 +52,10 @@
         <action android:id="@+id/action_secondClassFragment_to_secondClassHistoryFragment"
             app:destination="@id/secondClassHistoryFragment">
         </action>
+        <action android:id="@+id/action_secondClassFragment_to_secondClassScoreQueryFragment"
+            app:destination="@id/secondClassScoreQueryFragment">
+        </action>
+
     </fragment>
     <fragment
         android:id="@+id/secondClassDetailFragment"
@@ -74,6 +78,10 @@
 
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/secondClassScoreQueryFragment"
+        android:name="com.icyrockton.school_app.fragment.second_class.score.SecondClassScoreQueryFragment"
+         />
 
 
 </navigation>

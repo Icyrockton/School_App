@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.RoundedCornersTransformation
+import com.icyrockton.school_app.R
 import com.icyrockton.school_app.databinding.SecondClassHistoryItemBinding
 import com.icyrockton.school_app.fragment.second_class.SecondClassHandler
 import com.icyrockton.school_app.fragment.second_class.SecondClassHistory
