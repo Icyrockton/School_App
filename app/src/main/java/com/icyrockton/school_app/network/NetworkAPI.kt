@@ -135,4 +135,12 @@ interface NetworkAPI {
 
     @GET("vatuu/YouthStudentStatsAction?setAction=studentData")
     suspend fun getDistribution(): ResponseBody
+
+
+    @GET("vatuu/WebMessageInfoAction?setAction=queryMyMessage&viewType=received")
+    suspend fun getEmail():ResponseBody //获取所有邮件信息
+
+
+    @GET("vatuu/WebMessageInfoAction?setAction=queryMyMessage&viewType=sent")
+    suspend fun getSendEmail():ResponseBody //获取所有发送的邮件信息
 }

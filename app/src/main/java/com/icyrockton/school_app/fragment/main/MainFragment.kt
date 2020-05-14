@@ -83,10 +83,13 @@ class MainFragment : Fragment() {
     private fun initProfileButton() {
 
         drawerHeaderBinding.drawerHeaderAvatarLayout.setOnClickListener {
-            activityNavController.navigate(R.id.profileFragment)
+            activityNavController.navigate(R.id.action_mainFragment_to_profileFragment)
         }
         drawerHeaderBinding.drawerHeaderBtnStuInfo.setOnClickListener {
-            activityNavController.navigate(R.id.profileFragment)
+            activityNavController.navigate(R.id.action_mainFragment_to_profileFragment)
+        }
+        drawerHeaderBinding.drawerHeaderBtnEmail.setOnClickListener {
+            activityNavController.navigate(R.id.action_mainFragment_to_emailFragment)
         }
     }
 

@@ -36,6 +36,12 @@
     <string name="hint_i_know">我知道了</string>
     <string name="hint_cancel">取消</string>
     <string name="str_cancel_second_class">取消该课程</string>
+    <string name="str_email_title">标题</string>
+    <string name="str_email_inbox">收件箱</string>
+    <string name="str_email_send">发件箱</string>
+    <string name="str_email_email">邮箱</string>
+    <string name="str_email_to">To:</string>
+    <string name="str_email_from">From:</string>
 
 
 </resources>

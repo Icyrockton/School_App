@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatDelegate
 import com.icyrockton.school_app.fragment.LoginViewModel
+import com.icyrockton.school_app.fragment.email.emailModule
 import com.icyrockton.school_app.fragment.login.LoginModule
 import com.icyrockton.school_app.fragment.main.mainModule
 import com.icyrockton.school_app.fragment.profile.profileModule
@@ -39,6 +40,8 @@ class AppApplication : Application(){
             modules(profileModule)
 
             modules(secondClassModule)
+
+            modules(emailModule)
         }
     }
 
