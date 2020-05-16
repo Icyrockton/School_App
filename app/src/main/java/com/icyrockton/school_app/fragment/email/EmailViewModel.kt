@@ -9,6 +9,7 @@ import com.icyrockton.school_app.base.WrapperResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.jsoup.Jsoup
 
 class EmailViewModel(private val repository: EmailRepository) : ViewModel() {
 
@@ -20,6 +21,11 @@ class EmailViewModel(private val repository: EmailRepository) : ViewModel() {
          val sendLiveData: LiveData<WrapperResult<List<SendEmail>>> = _sendLiveData
     private val _sendCountLiveData = MutableLiveData<Int>() //老师未读数量
     val sendCountLiveData: LiveData<Int> = _sendCountLiveData
+     private val _imageUrlLiveData = MutableLiveData<List<String>>()
+         val imageUrlLiveData: LiveData<List<String>> = _imageUrlLiveData
+
+     private val _htmlLiveData = MutableLiveData<WrapperResult<String>>()
+         val htmlLiveData: LiveData<WrapperResult<String>> = _htmlLiveData
     companion object{
         private const val TAG = "EmailViewModel"
     }
@@ -53,5 +59,25 @@ class EmailViewModel(private val repository: EmailRepository) : ViewModel() {
             _inboxLiveData.postValue(WrapperResult.done(allEmail))
             _inboxCountLiveData.postValue(sumBy)
         }
+    }
+
+    fun getEmailDetail(message_ID:String){
+        viewModelScope.launch {
+            _htmlLiveData.postValue(WrapperResult.loading)
+            val htmlResponse = repository.getEmailDetail(message_ID)
+            parseImageUrl(htmlResponse)
+            _htmlLiveData.postValue(WrapperResult.done(htmlResponse))
+        }
+    }
+    suspend fun parseImageUrl(htmlResponse: String) = withContext(Dispatchers.IO){
+        val list= mutableListOf<String>()
+        val allImage = Jsoup.parse(htmlResponse).select("img")
+        allImage.forEach {
+            list.add(it.attr("src"))
+        }
+        _imageUrlLiveData.postValue(list)
+    }
+    fun getImageUrl(index:Int):String?{
+        return _imageUrlLiveData.value?.get(index)
     }
 }

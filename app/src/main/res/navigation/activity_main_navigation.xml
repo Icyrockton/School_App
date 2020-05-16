@@ -87,7 +87,29 @@
     <fragment
         android:id="@+id/emailFragment"
         android:name="com.icyrockton.school_app.fragment.email.EmailFragment"
-        tools:layout="@layout/email_fragment" />
+        tools:layout="@layout/email_fragment">
+
+        <action android:id="@+id/action_emailFragment_to_emailDetailFragment"
+            app:destination="@id/emailDetailFragment">
+            <argument app:argType="string" app:nullable="false" android:name="message_ID"/>
+            <argument app:argType="string" app:nullable="false" android:defaultValue="" android:name="title"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/emailDetailFragment"
+        android:name="com.icyrockton.school_app.fragment.email.detail.EmailDetailFragment"
+        tools:layout="@layout/fragment_email_detail">
+        <action android:id="@+id/action_emailDetailFragment_to_imagePreviewDialogFragment"
+            app:destination="@id/imagePreviewDialogFragment"
+            >
+            <argument app:argType="string" android:name="currentImageUrl" app:nullable="false"/>
+        </action>
+
+    </fragment>
+    <dialog
+        android:id="@+id/imagePreviewDialogFragment"
+        android:name="com.icyrockton.school_app.dialogfragment.image.ImagePreviewDialogFragment"
+        />
 
 
 </navigation>

@@ -31,6 +31,7 @@ class EmailInboxAdapter(private val handler: EmailHandler, private var data:Muta
     class EmailViewHolder(private val binding:EmailItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bindData(handler: EmailHandler, email: Email) {
             binding.data=email
+            binding.emailCardLayout.setOnClickListener { handler.goToDetail(email.message_ID,email.title) }
             //未读
            if (!email.read)
                binding.emailReadImg.visibility= View.INVISIBLE

@@ -1,5 +1,6 @@
 package com.icyrockton.school_app.utils
 
+import android.graphics.Bitmap
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
@@ -16,3 +17,4 @@ fun Fragment.toastLong(text: CharSequence) =
 
 fun Fragment.toastLong(@StringRes resId: Int) =
     Toast.makeText(requireContext(), resId, Toast.LENGTH_LONG).show()
+

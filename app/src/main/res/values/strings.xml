@@ -42,6 +42,7 @@
     <string name="str_email_email">邮箱</string>
     <string name="str_email_to">To:</string>
     <string name="str_email_from">From:</string>
+    <string name="str_email_no_content">没有内容</string>
 
 
 </resources>

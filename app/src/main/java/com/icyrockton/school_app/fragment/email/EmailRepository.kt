@@ -55,4 +55,8 @@ class EmailRepository(private val networkAPI: NetworkAPI) {
         return s.substring(startIndex,endIndex)
     }
 
+    suspend fun getEmailDetail(message_ID:String):String= withContext(Dispatchers.IO){
+        val responseBody = networkAPI.getEmailDetail(message_ID)
+        return@withContext Jsoup.parse(responseBody.string()).getElementById("baseHTML").html()
+    }
 }

@@ -86,6 +86,14 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha03"
 
 
+    //aztec
+    implementation 'com.github.wordpress-mobile.WordPress-Aztec-Android:aztec:v1.3.41'
+
+    //PhotoView
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+
+
     implementation project(":williamchart")
     implementation project(":wave")
 }

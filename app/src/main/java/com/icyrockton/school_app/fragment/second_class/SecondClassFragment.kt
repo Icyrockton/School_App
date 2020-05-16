@@ -59,6 +59,7 @@ class SecondClassFragment : Fragment(), SecondClassHandler,View.OnClickListener 
                     adapter.updateData(data)
                 })
             }
+            isNavigationViewInit=true
         }
     }
 

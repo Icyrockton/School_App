@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/image_download"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:tint="@android:color/darker_gray"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_image_preview_download" />
+
+    <ImageView
+        android:id="@+id/image_share"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:tint="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@+id/image_download"
+        app:layout_constraintTop_toTopOf="@+id/image_download"
+        app:srcCompat="@drawable/ic_image_preview_share" />
+    <TextView
+        android:id="@+id/image_current_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="48dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="@+id/image_preview_viewpager"
+        app:layout_constraintEnd_toStartOf="@+id/textView129"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/image_preview_viewpager" />
+
+    <TextView
+        android:id="@+id/textView129"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@+id/image_total_index"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/image_current_index"
+        app:layout_constraintTop_toTopOf="@+id/image_current_index" />
+
+    <TextView
+        android:id="@+id/image_total_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toStartOf="@+id/image_preview_viewpager"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView129"
+        app:layout_constraintTop_toTopOf="@+id/textView129" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/image_preview_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_share" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,7 +55,7 @@ class EmailSendFragment : Fragment(), EmailHandler {
         binding.emailSendSwipeRefreshLayout.setOnRefreshListener { viewModel.refreshSendData() }
     }
 
-    override fun goToDetail(message_ID: String) {
+    override fun goToDetail(message_ID: String, title: String) {
 
     }
 }
