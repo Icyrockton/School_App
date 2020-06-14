@@ -10,6 +10,7 @@ import com.icyrockton.school_app.fragment.main.mainModule
 import com.icyrockton.school_app.fragment.profile.profileModule
 import com.icyrockton.school_app.fragment.score.scoreModule
 import com.icyrockton.school_app.fragment.second_class.secondClassModule
+import com.icyrockton.school_app.fragment.timetable.timeTableModule
 import com.icyrockton.school_app.module.HelperModule
 import com.icyrockton.school_app.module.NetworkModule
 import org.koin.android.ext.koin.androidContext
@@ -42,6 +43,8 @@ class AppApplication : Application(){
             modules(secondClassModule)
 
             modules(emailModule)
+
+            modules(timeTableModule)
         }
     }
 

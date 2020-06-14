@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.icyrockton.school_app.R
 import com.icyrockton.school_app.base.NetworkType
 import com.icyrockton.school_app.base.WrapperResult
 import com.icyrockton.school_app.databinding.ScoreOverViewFragmentBinding
+import com.icyrockton.school_app.utils.toast
+import com.icyrockton.school_app.utils.toastLong
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 //成绩总览
@@ -50,6 +53,10 @@ class ScoreOverViewFragment : Fragment(),OrderTypeHandler {
                     NetworkType.DONE->{
                         binding.scoreOverViewSwipeRefreshLayout.isRefreshing=false//更新完毕
                         adapter.updateData(result.data!!)
+                    }
+                    NetworkType.ERROR->{
+                        toastLong("您还未完成课程评价\n正在导航至自动课程评价界面")
+                        findNavController().navigate(R.id.action_scoreFragment_to_autoEvaluationFragment)
                     }
                 }
         })

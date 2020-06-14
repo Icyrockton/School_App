@@ -150,5 +150,39 @@ interface NetworkAPI {
         @Query("sid") message_ID: String,
         @Query("setAction") action: String = "messageInfo",
         @Query("viewType") viewType: String = "reply"
+    ): ResponseBody
+
+    @GET("vatuu/AssessAction?setAction=list")
+    suspend fun getAllNeedEvaluationCourse(): ResponseBody //获取所有的需要评价的课程
+
+    @FormUrlEncoded
+    @POST("vatuu/AssessAction")
+    @Headers(
+        "Accept: */*",
+        "Accept-Encoding: gzip, deflate",
+        "Accept-Language: zh-CN,zh;q=0.9",
+        "Origin: http://jwc.swjtu.edu.cn"
+    )
+    suspend fun postEvaluationCourse(   //提交
+        @Header("Referer") referer:String,
+        @Field("answer") answer: String,
+        @Field("assess_id") assess_id: String,
+        @Field("id") id: String,
+        @Field("logId") logId: String,
+        @Field("scores")scores:String,
+        @Field("percents") percents: String,
+        @Field("t") t: String=Math.random().toString(),//默认值
+        @Field("keyword") keyword: String = "null",//默认值
+        @Field("teacherId") teacherId: String = "",//默认值
+        @Field("setAction") setAction: String = "answerStudent",//默认值
+        @Field("templateFlag") templateFlag: String = "0"//默认值
+    ): ResponseBody
+
+    @GET("vatuu/AssessAction")
+    suspend fun getNeedEvaluationCourse(   //获取具体的需要评价的课程
+        @Query("sid") sid: String,
+        @Query("lid") lid: String,
+        @Query("templateFlag") templateFlag: String = "0",
+        @Query("setAction") action: String = "viewAssess"
     ):ResponseBody
 }

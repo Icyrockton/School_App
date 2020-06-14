@@ -17,7 +17,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/email_tool_bar"
-
+            android:background="?colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 

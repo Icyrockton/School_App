@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.icyrockton.school_app.base.WrapperResult
+import com.icyrockton.school_app.fragment.score.NeedCourseEvaluationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,10 +33,19 @@ class ScoreOverViewViewModel(private val repository: ScoreOverViewRepository) : 
     }
     fun refreshScoreListByDate(orderValue:String){
         viewModelScope.launch {
-            scoreLiveData.postValue(WrapperResult.loading)
-            val score = repository.getAllScoreByDate(orderValue)
-            val scoreRatio = parseScoreRatio(score)
-            scoreLiveData.postValue(WrapperResult.done(ScoreWrapper(ArrayList(score),scoreRatio)))
+            try {
+                scoreLiveData.postValue(WrapperResult.loading)
+                val score = repository.getAllScoreByDate(orderValue)
+                val scoreRatio = parseScoreRatio(score)
+                scoreLiveData.postValue(WrapperResult.done(ScoreWrapper(ArrayList(score),scoreRatio)))
+            }
+            catch (e:Exception){
+                Log.d(TAG, "refreshScoreListByDate: 进入.....错误")
+                if (e is NeedCourseEvaluationException){
+                    scoreLiveData.postValue(WrapperResult.error(e))
+                }
+            }
+
         }
     }
 

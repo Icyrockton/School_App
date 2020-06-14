@@ -14,12 +14,13 @@
                 android:background="?colorPrimaryDark"
                 android:id="@+id/score_collapsing_toolbar_layout"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="false"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/score_tool_bar"
                     android:layout_width="match_parent"
-                    android:background="?colorPrimary"
+                    android:background="?colorPrimaryDark"
                     android:layout_height="?android:actionBarSize"
                     app:layout_collapseMode="parallax"/>
 

@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.icyrockton.school_app.R
@@ -34,7 +36,7 @@ class ScoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        NavigationUI.setupWithNavController(binding.scoreToolBar,findNavController())
         binding.scoreViewPager.adapter = ScoreFragmentAdapter(this)
         TabLayoutMediator(
             binding.scoreTabLayout,

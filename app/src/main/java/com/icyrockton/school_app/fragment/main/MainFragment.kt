@@ -1,5 +1,6 @@
 package com.icyrockton.school_app.fragment.main
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,6 +24,8 @@ import com.icyrockton.school_app.base.ThemeHelper
 import com.icyrockton.school_app.databinding.MainFragmentBinding
 import com.icyrockton.school_app.databinding.MainFragmentDrawerHeaderBinding
 import com.icyrockton.school_app.fragment.main.homepage.HomePageFragment
+import com.icyrockton.school_app.utils.getThemeColor
+import com.jaeger.library.StatusBarUtil
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -49,6 +52,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        StatusBarUtil.setTranslucentForDrawerLayout(requireActivity(),binding.mainFragmentDrawerLayout,0)
         fragmentNavController = Navigation.findNavController(requireActivity(),R.id.nav_host_fragment_main)
         activityNavController=Navigation.findNavController(requireActivity(),R.id.nav_host_activity_main)
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.mainFragmentToolbar)

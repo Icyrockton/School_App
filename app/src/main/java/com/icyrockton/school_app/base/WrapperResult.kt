@@ -3,14 +3,14 @@ package com.icyrockton.school_app.base
 data class WrapperResult<out T>(
     val data: T?,
     val networkType: NetworkType,
-    val networkMsg: String = ""
+    val networkMsg: Exception?=null
 ) {
 
     companion object {
         fun <T> done(data: T) = WrapperResult(data, NetworkType.DONE)
-        fun error(errorMsg: String) = WrapperResult(
+        fun error(errorException: Exception) = WrapperResult(
             null,
-            NetworkType.ERROR, errorMsg
+            NetworkType.ERROR, errorException
         )
         val  loading = WrapperResult(null, NetworkType.LOADING)
     }

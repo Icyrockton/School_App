@@ -14,7 +14,6 @@ class ProfileRepository(private val networkAPI: NetworkAPI) {
 
         
         val td = tableBody.select("td")
-        Log.d(TAG, "getProfileInfo: ${td}")
         return@withContext ProfileInfo(
             td[2].text(),
             td[4].text(),

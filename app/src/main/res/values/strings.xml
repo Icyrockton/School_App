@@ -44,5 +44,13 @@
     <string name="str_email_from">From:</string>
     <string name="str_email_no_content">没有内容</string>
 
+    
+    <string-array name="auto_evaluation_score">
+        <item>完全符合(5.0分)</item>
+        <item>符合(4.0分)</item>
+        <item>基本符合(3.0分)</item>
+        <item>基本不符合(2.0分)</item>
+        <item>完全不符合(1.0分)</item>
+    </string-array>
 
 </resources>

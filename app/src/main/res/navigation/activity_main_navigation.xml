@@ -32,7 +32,15 @@
     <fragment
         android:id="@+id/scoreFragment"
         android:name="com.icyrockton.school_app.fragment.score.ScoreFragment"
-        tools:layout="@layout/score_fragment" />
+        android:label="score_Fragment"
+        tools:layout="@layout/score_fragment">
+        <action
+            android:id="@+id/action_scoreFragment_to_autoEvaluationFragment"
+            app:destination="@id/autoEvaluationFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.icyrockton.school_app.fragment.profile.ProfileFragment"
@@ -110,6 +118,15 @@
         android:id="@+id/imagePreviewDialogFragment"
         android:name="com.icyrockton.school_app.dialogfragment.image.ImagePreviewDialogFragment"
         />
+    <fragment
+        android:id="@+id/autoEvaluationFragment"
+        android:name="com.icyrockton.school_app.fragment.score.autoevaluation.AutoEvaluationFragment"
+        android:label="auto_evaluation_fragment"
+        tools:layout="@layout/auto_evaluation_fragment" >
+        <action
+            android:id="@+id/action_autoEvaluationFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 
 
 </navigation>

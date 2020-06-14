@@ -4,7 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.icyrockton.school_app.base.WrapperResult
+import com.icyrockton.school_app.fragment.score.NeedCourseEvaluationException
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class CetScoreViewModel(private val repository: CetScoreRepository) : ViewModel() {
@@ -18,8 +20,15 @@ class CetScoreViewModel(private val repository: CetScoreRepository) : ViewModel(
     fun refreshData() {
         viewModelScope.launch {
             scoreLiveData.postValue(WrapperResult.loading)
-            val result = repository.getCETScore()
-            scoreLiveData.postValue(WrapperResult.done(result))
+            try {
+
+                val result = repository.getCETScore()
+                scoreLiveData.postValue(WrapperResult.done(result))
+            }catch (e:Exception){
+                if (e is NeedCourseEvaluationException){
+                    scoreLiveData.postValue(WrapperResult.error(e))
+                }
+            }
         }
     }
 }
