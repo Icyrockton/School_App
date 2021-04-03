@@ -18,7 +18,13 @@ class ScoreOverViewRepository(private val networkAPI: NetworkAPI) {
         const val ORDER_BY_DESC = "desc"
         const val ORDER_BY_ASC = "asc"
         private const val TAG = "ScoreOverViewRepository"
+        val COURSE= arrayListOf<String>("编译原理","操作系统","操作系统实验","程序语言综合课程设计","大学物理BⅡ","大学物理BI","大学物理实验AⅠ","大学物理实验AⅡ",
+        "概率论与数理统计B","高等数学BⅠ","高等数学BⅡ","高级语言程序设计","高级语言程序设计实验","计算机图形学","计算机图形学实验","计算机网络","计算机网络工程实验",
+        "计算机组成实验","计算机组成原理","离散数学A","面向对象程序设计","面向对象程序设计实验","嵌入式系统设计与应用","嵌入式系统设计与应用实验","软件工程","数据结构",
+        "数据结构实验","数据库原理与设计","数据库原理与设计实验","数字电子技术B","数字电子技术实验B","算法分析与设计","微机与接口技术A","微机与接口技术实验","现代铁路信息技术导论","线性代数B",
+            "英语Ⅰ","英语Ⅱ","Java程序设计","互联网搜索引擎","网络编程技术")
     }
+
 
     suspend fun getAllScore(orderType: String): List<ScoreDetail> = withContext(Dispatchers.IO) {
         val response = networkAPI.getAllScore(orderType)
@@ -28,7 +34,9 @@ class ScoreOverViewRepository(private val networkAPI: NetworkAPI) {
     suspend fun getAllScoreByDate(orderValue: String): List<ScoreDetail> =
         withContext(Dispatchers.IO) {
             val response = networkAPI.getAllScoreByDate(orderValue)
-            return@withContext parseContent(response)
+            return@withContext parseContent(response).also {
+                Log.d(TAG, "getAllScoreByDate: ${it}")
+            }
         }
 
     private fun parseRow(elements: Elements): ScoreDetail {
@@ -64,6 +72,8 @@ class ScoreOverViewRepository(private val networkAPI: NetworkAPI) {
                     parseRow(contents)
                 )
             }
+
+
             return list
 
         }
@@ -74,4 +84,6 @@ class ScoreOverViewRepository(private val networkAPI: NetworkAPI) {
             return emptyList()
         }
     }
+
+
 }

@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.NumberFormatException
+import kotlin.math.log
 
 class ScoreOverViewViewModel(private val repository: ScoreOverViewRepository) : ViewModel() {
 
@@ -27,8 +28,13 @@ class ScoreOverViewViewModel(private val repository: ScoreOverViewRepository) : 
         viewModelScope.launch {
             scoreLiveData.postValue(WrapperResult.loading)
             val score = repository.getAllScore(orderType)
+            Log.d(TAG, "refreshScoreList: ----------------------------------")
+            score.forEach {
+                Log.d(TAG,it.toString())
+            }
             val scoreRatio = parseScoreRatio(score)
-            scoreLiveData.postValue(WrapperResult.done(ScoreWrapper(ArrayList(score),scoreRatio)))
+
+            scoreLiveData.postValue(WrapperResult.done(ScoreWrapper(ArrayList(score),scoreRatio,calculate(score))))
         }
     }
     fun refreshScoreListByDate(orderValue:String){
@@ -37,7 +43,7 @@ class ScoreOverViewViewModel(private val repository: ScoreOverViewRepository) : 
                 scoreLiveData.postValue(WrapperResult.loading)
                 val score = repository.getAllScoreByDate(orderValue)
                 val scoreRatio = parseScoreRatio(score)
-                scoreLiveData.postValue(WrapperResult.done(ScoreWrapper(ArrayList(score),scoreRatio)))
+                scoreLiveData.postValue(WrapperResult.done(ScoreWrapper(ArrayList(score),scoreRatio,calculate(score))))
             }
             catch (e:Exception){
                 Log.d(TAG, "refreshScoreListByDate: 进入.....错误")
@@ -69,5 +75,19 @@ class ScoreOverViewViewModel(private val repository: ScoreOverViewRepository) : 
             }
         }
         return@withContext ScoreRatio(excellent, good, pass, fail)
+    }
+
+    private fun calculate(list: List<ScoreDetail>) : ScoreAverage {
+        var count =0
+        var sum=0f
+        list.forEach{score->
+            if (score.course_name in ScoreOverViewRepository.COURSE){
+                count++
+                Log.d(TAG, "calculate: ${score.course_name}")
+                sum+=score.score.toFloat()
+            }
+        }
+        Log.d(TAG, "calculate: sum=${sum} count=${count} ${sum/count}")
+        return ScoreAverage(totalScore = sum,count = count,average = sum/count)
     }
 }

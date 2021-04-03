@@ -6,3 +6,10 @@ data class ScoreRatio (
     var pass: Int=0,//60-80 及格
     var fail: Int=0//0-60 不及格
 )
+
+
+data class ScoreAverage(
+    var totalScore:Float,
+    var count :Int,
+    var average:Float
+)

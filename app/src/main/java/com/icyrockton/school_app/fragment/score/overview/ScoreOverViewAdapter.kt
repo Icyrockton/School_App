@@ -190,6 +190,7 @@ class ScoreOverViewAdapter(
             fail = newData.scoreRatio.fail
         }
 
+
         scoreWrapper.scoreList.clear()
 
         scoreWrapper.scoreList.addAll(newData.scoreList)

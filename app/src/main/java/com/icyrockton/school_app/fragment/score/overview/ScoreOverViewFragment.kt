@@ -42,7 +42,7 @@ class ScoreOverViewFragment : Fragment(),OrderTypeHandler {
         recyclerView=binding.scoreOverViewRecyclerView
         recyclerView.setItemViewCacheSize(100)
         recyclerView.layoutManager=LinearLayoutManager(requireContext())
-        adapter= ScoreOverViewAdapter(requireContext(), ScoreWrapper(ArrayList(),ScoreRatio()),this)
+        adapter= ScoreOverViewAdapter(requireContext(), ScoreWrapper(ArrayList(),ScoreRatio(),ScoreAverage(0f,0,0f)),this)
         recyclerView.adapter=adapter
         viewModel.scoreLiveData.observe(viewLifecycleOwner,
             Observer { result   ->
@@ -53,6 +53,8 @@ class ScoreOverViewFragment : Fragment(),OrderTypeHandler {
                     NetworkType.DONE->{
                         binding.scoreOverViewSwipeRefreshLayout.isRefreshing=false//更新完毕
                         adapter.updateData(result.data!!)
+                        var scoreAverage = result.data.scoreAverage
+                        toastLong("保研课总分:${scoreAverage.totalScore},查阅到的总课程数:${scoreAverage.count},平均分:${scoreAverage.average}")
                     }
                     NetworkType.ERROR->{
                         toastLong("您还未完成课程评价\n正在导航至自动课程评价界面")
